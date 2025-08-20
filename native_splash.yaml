@@ -3,11 +3,15 @@ flutter_native_splash :
   color_dark: "##010438"
   image : assets/images/logo&icon/vendoo_icon.png
   image_dark : assets/images/logo&icon/vendoo_icon.png
+  branding : assets/images/logo&icon/branding.png
   
   android_12 :
     color: "#FFFFFF"
     color_dark: "#010438"
     image : assets/images/logo&icon/vendoo_icon.png
     image_dark : assets/images/logo&icon/vendoo_icon.png
-  
+    branding : assets/images/logo&icon/branding.png
+
+  android : true
+  ios : true
   web: false
