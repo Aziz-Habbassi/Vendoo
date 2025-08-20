@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vendoo/presentation/views/home_view/home_view.dart';
+import 'package:vendoo/presentation/views/login_view/login_view.dart';
 
 class AppRoutes {
   static final GoRouter router = GoRouter(
@@ -8,7 +8,7 @@ class AppRoutes {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const HomeView();
+          return const LoginView();
         },
       ),
     ],

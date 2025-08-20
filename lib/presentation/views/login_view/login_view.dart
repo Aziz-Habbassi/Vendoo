@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart' as rive;
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +14,7 @@ class HomeView extends StatelessWidget {
           Positioned(
             width: MediaQuery.of(context).size.width * 1.5,
             top: MediaQuery.of(context).size.height * 0.2,
+            left: 100,
             child: Image.asset("assets/images/loginView/Spline.png"),
           ),
           rive.RiveAnimation.asset(
