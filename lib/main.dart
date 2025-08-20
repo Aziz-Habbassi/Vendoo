@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vendoo/app_routes.dart';
 
 void main() {
   runApp(const Vendoo());
@@ -9,6 +10,6 @@ class Vendoo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp.router(routerConfig: AppRoutes.router);
   }
 }
