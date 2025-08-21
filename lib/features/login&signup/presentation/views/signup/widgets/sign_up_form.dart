@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vendoo/core/constants/constants.dart';
-import 'package:vendoo/features/login&signup/presentation/views/login/widgets/login_text_field.dart';
+import 'package:vendoo/features/login&signup/presentation/shared_widgets/custom_text_field.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -11,21 +11,24 @@ class SignUpForm extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: LoginTextField(
+          child: CustomTextField(
+            hintText: "Your Name",
             prefixIcon: Icon(Icons.person, color: kprimaryColor),
           ),
         ),
         SizedBox(height: 24),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: LoginTextField(
+          child: CustomTextField(
+            hintText: "E-mail",
             prefixIcon: Icon(Icons.mail, color: kprimaryColor),
           ),
         ),
         SizedBox(height: 24),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: LoginTextField(
+          child: CustomTextField(
+            hintText: "Password",
             prefixIcon: Icon(Icons.password, color: kprimaryColor),
           ),
         ),
