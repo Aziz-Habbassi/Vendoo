@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart' as rive;
+import 'package:vendoo/core/constants/constants.dart';
 import 'package:vendoo/presentation/views/login_view/widgets/custom_button.dart';
 import 'package:vendoo/presentation/views/login_view/widgets/login_header.dart';
 import 'package:vendoo/presentation/views/login_view/widgets/login_text_field.dart';
@@ -35,20 +36,14 @@ class LoginView extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: LoginTextField(
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: Color.fromARGB(255, 255, 171, 64),
-                      ),
+                      prefixIcon: Icon(Icons.person, color: kprimaryColor),
                     ),
                   ),
                   const SizedBox(height: 24),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: LoginTextField(
-                      prefixIcon: Icon(
-                        Icons.password,
-                        color: Color.fromARGB(255, 255, 171, 64),
-                      ),
+                      prefixIcon: Icon(Icons.password, color: kprimaryColor),
                     ),
                   ),
                   SizedBox(height: 24),

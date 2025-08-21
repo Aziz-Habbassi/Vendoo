@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vendoo/core/constants/constants.dart';
 
 class LoginHeader extends StatelessWidget {
   const LoginHeader({super.key});
@@ -12,9 +13,7 @@ class LoginHeader extends StatelessWidget {
           style: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
             fontSize: 36,
-            shadows: [
-              Shadow(color: Color.fromARGB(255, 255, 171, 64), blurRadius: 24),
-            ],
+            shadows: [Shadow(color: kprimaryColor, blurRadius: 24)],
             fontFamily: "Poppins",
           ),
         ),
