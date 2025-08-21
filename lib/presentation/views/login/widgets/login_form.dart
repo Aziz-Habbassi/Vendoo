@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vendoo/core/constants/constants.dart';
-import 'package:vendoo/presentation/views/login_view/widgets/custom_button.dart';
-import 'package:vendoo/presentation/views/login_view/widgets/login_footer.dart';
-import 'package:vendoo/presentation/views/login_view/widgets/login_header.dart';
-import 'package:vendoo/presentation/views/login_view/widgets/login_text_field.dart';
+import 'package:vendoo/presentation/views/login/widgets/custom_button.dart';
+import 'package:vendoo/presentation/views/login/widgets/login_footer.dart';
+import 'package:vendoo/presentation/views/login/widgets/login_header.dart';
+import 'package:vendoo/presentation/views/login/widgets/login_text_field.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
