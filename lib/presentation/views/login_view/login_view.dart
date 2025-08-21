@@ -29,28 +29,54 @@ class LoginView extends StatelessWidget {
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-              child: Column(
+              child: Container(color: Colors.black.withAlpha(80)),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LoginHeader(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: LoginTextField(
+                  prefixIcon: Icon(Icons.person, color: kprimaryColor),
+                ),
+              ),
+              const SizedBox(height: 24),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: LoginTextField(
+                  prefixIcon: Icon(Icons.password, color: kprimaryColor),
+                ),
+              ),
+              const SizedBox(height: 24),
+              CustomButton(text: "Login"),
+              const SizedBox(height: 16),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const LoginHeader(),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: LoginTextField(
-                      prefixIcon: Icon(Icons.person, color: kprimaryColor),
+                  Text(
+                    "Don't have an account ?",
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: LoginTextField(
-                      prefixIcon: Icon(Icons.password, color: kprimaryColor),
+                  const SizedBox(width: 6),
+                  GestureDetector(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: kprimaryColor,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  SizedBox(height: 24),
-                  CustomButton(text: "Login"),
                 ],
               ),
-            ),
+            ],
           ),
         ],
       ),
