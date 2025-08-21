@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vendoo/app_routes.dart';
 import 'package:vendoo/core/constants/constants.dart';
 
 class LoginFooter extends StatelessWidget {
@@ -19,6 +21,7 @@ class LoginFooter extends StatelessWidget {
         ),
         const SizedBox(width: 6),
         GestureDetector(
+          onTap: () => context.go(AppRoutes.signUp),
           child: Text(
             "Sign Up",
             style: TextStyle(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vendoo/presentation/views/login/widgets/animated_background.dart';
-import 'package:vendoo/presentation/views/login/widgets/login_form.dart';
+import 'package:vendoo/features/login&signup/presentation/shared_widgets/animated_background.dart';
+import 'package:vendoo/features/login&signup/presentation/views/login/widgets/login_form.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
