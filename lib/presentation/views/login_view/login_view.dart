@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:vendoo/presentation/views/login_view/widgets/custom_button.dart';
+import 'package:vendoo/presentation/views/login_view/widgets/login_header.dart';
 import 'package:vendoo/presentation/views/login_view/widgets/login_text_field.dart';
 
 class LoginView extends StatelessWidget {
@@ -30,21 +31,7 @@ class LoginView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Welcome To",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 36,
-                      shadows: [
-                        Shadow(
-                          color: Color.fromARGB(255, 255, 171, 64),
-                          blurRadius: 24,
-                        ),
-                      ],
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-                  Image.asset("assets/images/logo&icon/dark_branding.png"),
+                  const LoginHeader(),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: LoginTextField(
