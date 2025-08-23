@@ -9,16 +9,20 @@ class LoginForeground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const LoginHeader(),
-        const LoginForm(),
-        const SizedBox(height: 24),
-        const CustomButton(text: "Login"),
-        const SizedBox(height: 16),
-        const LoginFooter(),
-      ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 100),
+            const LoginHeader(),
+            const LoginForm(),
+            const SizedBox(height: 24),
+            const CustomButton(text: "Login"),
+            const SizedBox(height: 16),
+            const LoginFooter(),
+          ],
+        ),
+      ),
     );
   }
 }

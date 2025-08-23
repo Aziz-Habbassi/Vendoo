@@ -8,7 +8,9 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [const AnimatedBackground(), LoginForeground()]),
+      body: Stack(
+        children: [const AnimatedBackground(), const LoginForeground()],
+      ),
     );
   }
 }

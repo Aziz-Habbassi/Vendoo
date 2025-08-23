@@ -9,17 +9,21 @@ class SignUpForeground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const SignUpHeader(),
-        const SizedBox(height: 26),
-        const SignUpForm(),
-        const SizedBox(height: 24),
-        CustomButton(text: "Sign Up"),
-        const SizedBox(height: 16),
-        SignUpFooter(),
-      ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 100),
+            const SignUpHeader(),
+            const SizedBox(height: 26),
+            const SignUpForm(),
+            const SizedBox(height: 24),
+            CustomButton(text: "Sign Up"),
+            const SizedBox(height: 16),
+            SignUpFooter(),
+          ],
+        ),
+      ),
     );
   }
 }
