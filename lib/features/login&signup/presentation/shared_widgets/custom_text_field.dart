@@ -6,12 +6,19 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.prefixIcon,
     required this.hintText,
+    this.onchanged,
+    this.validator,
   });
   final Icon prefixIcon;
   final String hintText;
+  final void Function(String)? onchanged;
+  final String? Function(String?)? validator;
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
+      onChanged: onchanged,
       cursorColor: kprimaryColor,
       style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
       decoration: InputDecoration(
