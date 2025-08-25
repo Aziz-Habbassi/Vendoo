@@ -73,11 +73,17 @@ class SignUpForm extends StatelessWidget {
             text: "Sign Up",
             ontap: () async {
               if (formkey.currentState!.validate()) {
-                await Supabase.instance.client.auth.signUp(
-                  data: {"name": name},
-                  email: mail,
-                  password: password!,
-                );
+                try {
+                  await Supabase.instance.client.auth.signUp(
+                    data: {"name": name},
+                    email: mail,
+                    password: password!,
+                  );
+                } on AuthException catch (e) {
+                  debugPrint(e.message);
+                } catch (e) {
+                  debugPrint(e.toString());
+                }
               }
             },
           ),
