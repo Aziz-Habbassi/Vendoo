@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:vendoo/core/constants/constants.dart';
 import 'package:vendoo/features/login&signup/presentation/shared_widgets/custom_button.dart';
 import 'package:vendoo/features/login&signup/presentation/shared_widgets/custom_text_field.dart';
+import 'package:vendoo/features/login&signup/presentation/shared_widgets/custom_snackbar.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -73,14 +74,20 @@ class SignUpForm extends StatelessWidget {
             text: "Sign Up",
             ontap: () async {
               if (formkey.currentState!.validate()) {
+                final messenger = ScaffoldMessenger.of(context);
                 try {
                   await Supabase.instance.client.auth.signUp(
                     data: {"name": name},
                     email: mail,
                     password: password!,
                   );
+                  messenger.showSnackBar(
+                    customSnackbar(message: "Success", type: "success"),
+                  );
                 } on AuthException catch (e) {
-                  debugPrint(e.message);
+                  messenger.showSnackBar(
+                    customSnackbar(message: e.message, type: "error"),
+                  );
                 } catch (e) {
                   debugPrint(e.toString());
                 }
