@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vendoo/features/login&signup/presentation/shared_widgets/animated_background.dart';
-import 'package:vendoo/features/login&signup/presentation/views/signup/widgets/sign_up_foreground.dart';
+import 'package:vendoo/features/auth/presentation/shared_widgets/animated_background.dart';
+import 'package:vendoo/features/auth/presentation/views/signup/widgets/sign_up_foreground.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});

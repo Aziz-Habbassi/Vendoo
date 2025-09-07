@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vendoo/core/constants/constants.dart';
-import 'package:vendoo/features/login&signup/presentation/views/login/widgets/login_header.dart';
+import 'package:vendoo/features/auth/presentation/views/login/widgets/login_header.dart';
 
 class SignUpHeader extends StatelessWidget {
   const SignUpHeader({super.key});

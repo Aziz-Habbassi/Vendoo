@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vendoo/features/login&signup/presentation/shared_widgets/custom_button.dart';
-import 'package:vendoo/features/login&signup/presentation/views/login/widgets/login_footer.dart';
-import 'package:vendoo/features/login&signup/presentation/views/login/widgets/login_form.dart';
-import 'package:vendoo/features/login&signup/presentation/views/login/widgets/login_header.dart';
+import 'package:vendoo/features/auth/presentation/shared_widgets/custom_button.dart';
+import 'package:vendoo/features/auth/presentation/views/login/widgets/login_footer.dart';
+import 'package:vendoo/features/auth/presentation/views/login/widgets/login_form.dart';
+import 'package:vendoo/features/auth/presentation/views/login/widgets/login_header.dart';
 
 class LoginForeground extends StatelessWidget {
   const LoginForeground({super.key});

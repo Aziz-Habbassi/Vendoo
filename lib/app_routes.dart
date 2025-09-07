@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vendoo/features/login&signup/presentation/views/login/login_view.dart';
-import 'package:vendoo/features/login&signup/presentation/views/signup/sign_up_view.dart';
+import 'package:vendoo/features/auth/presentation/views/login/login_view.dart';
+import 'package:vendoo/features/auth/presentation/views/signup/sign_up_view.dart';
 
 class AppRoutes {
   static const String signUp = "/SignUpView";
