@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:vendoo/core/constants/constants.dart';
+import 'package:vendoo/features/auth/controllers/cubits/auth_cubit/auth_cubit.dart';
 import 'package:vendoo/features/auth/presentation/shared_widgets/custom_button.dart';
 import 'package:vendoo/features/auth/presentation/shared_widgets/custom_text_field.dart';
 import 'package:vendoo/features/auth/presentation/shared_widgets/custom_snackbar.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
 
-  @override
-  State<SignUpForm> createState() => _SignUpFormState();
-}
-
-class _SignUpFormState extends State<SignUpForm> {
-  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -78,39 +73,40 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           const SizedBox(height: 24),
-          isLoading
-              ? LoadingAnimationWidget.threeArchedCircle(
+          BlocConsumer<AuthCubit, AuthState>(
+            builder: (context, state) {
+              if (state is AuthLoading) {
+                return LoadingAnimationWidget.threeArchedCircle(
                   color: kprimaryColor,
-                  size: 30,
-                )
-              : CustomButton(
+                  size: 32,
+                );
+              } else if (state is AuthSuccess) {
+                return CustomButton(text: "Sign Up");
+              } else {
+                return CustomButton(
                   text: "Sign Up",
-                  ontap: () async {
-                    isLoading = true;
-                    setState(() {});
-                    if (formkey.currentState!.validate()) {
-                      final messenger = ScaffoldMessenger.of(context);
-                      try {
-                        await Supabase.instance.client.auth.signUp(
-                          data: {"name": name},
-                          email: mail,
-                          password: password!,
-                        );
-                        isLoading = false;
-                        setState(() {});
-                        messenger.showSnackBar(
-                          customSnackbar(message: "Success", type: "success"),
-                        );
-                      } on AuthException catch (e) {
-                        messenger.showSnackBar(
-                          customSnackbar(message: e.message, type: "error"),
-                        );
-                      } catch (e) {
-                        debugPrint(e.toString());
-                      }
-                    }
-                  },
-                ),
+                  ontap: () => BlocProvider.of<AuthCubit>(context).signUpUser(
+                    email: mail!,
+                    password: password!,
+                    firstName: name!,
+                    lastName: name!,
+                    username: name!,
+                  ),
+                );
+              }
+            },
+            listener: (context, state) {
+              if (state is AuthSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  customSnackbar(message: "Success", type: "success"),
+                );
+              } else if (state is AuthError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  customSnackbar(message: state.errMessage, type: "error"),
+                );
+              }
+            },
+          ),
         ],
       ),
     );

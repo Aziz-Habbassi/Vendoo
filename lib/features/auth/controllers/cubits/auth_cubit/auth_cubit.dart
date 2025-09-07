@@ -23,11 +23,12 @@ class AuthCubit extends Cubit<AuthState> {
       );
       final user = authResponse.user;
       if (user != null) {
-        await supabase.from('profiles').insert({
+        await supabase.from('users').insert({
           'id': user.id,
           'first_name': firstName,
           'last_name': lastName,
           'username': username,
+          'email': email,
         });
       }
       emit(AuthSuccess());
