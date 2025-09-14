@@ -36,4 +36,22 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthError(errMessage: e.toString()));
     }
   }
+
+  Future<void> singInUser({
+    required String email,
+    required String password,
+  }) async {
+    emit(AuthLoading());
+    try {
+      await Supabase.instance.client.auth.signInWithPassword(
+        email: 'example@email.com',
+        password: 'example-password',
+      );
+      emit(AuthSuccess());
+    } on AuthException catch (e) {
+      emit(AuthError(errMessage: e.message));
+    } catch (e) {
+      emit(AuthError(errMessage: e.toString()));
+    }
+  }
 }
