@@ -44,8 +44,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       await Supabase.instance.client.auth.signInWithPassword(
-        email: 'example@email.com',
-        password: 'example-password',
+        email: email,
+        password: password,
       );
       emit(AuthSuccess());
     } on AuthException catch (e) {
