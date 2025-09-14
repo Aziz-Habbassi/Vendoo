@@ -13,7 +13,7 @@ class SignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-    String? name, mail, password;
+    String? firstname, lastname, mail, password;
 
     return Form(
       key: formkey,
@@ -21,19 +21,42 @@ class SignUpForm extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: CustomTextField(
-              onchanged: (value) {
-                name = value;
-              },
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Enter your Name";
-                } else {
-                  return null;
-                }
-              },
-              hintText: "Your Name",
-              prefixIcon: const Icon(Icons.person, color: kprimaryColor),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(
+                    onchanged: (value) {
+                      firstname = value;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter your First name";
+                      } else {
+                        return null;
+                      }
+                    },
+                    hintText: "First name",
+                    prefixIcon: const Icon(Icons.person, color: kprimaryColor),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: CustomTextField(
+                    onchanged: (value) {
+                      lastname = value;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter your Last name";
+                      } else {
+                        return null;
+                      }
+                    },
+                    hintText: "Last name",
+                    prefixIcon: const Icon(Icons.person, color: kprimaryColor),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 24),
@@ -80,18 +103,19 @@ class SignUpForm extends StatelessWidget {
                   color: kprimaryColor,
                   size: 32,
                 );
-              } else if (state is AuthSuccess) {
-                return CustomButton(text: "Sign Up");
               } else {
                 return CustomButton(
                   text: "Sign Up",
-                  ontap: () => BlocProvider.of<AuthCubit>(context).signUpUser(
-                    email: mail!,
-                    password: password!,
-                    firstName: name!,
-                    lastName: name!,
-                    username: name!,
-                  ),
+                  ontap: () {
+                    if (formkey.currentState!.validate()) {
+                      BlocProvider.of<AuthCubit>(context).signUpUser(
+                        email: mail!,
+                        password: password!,
+                        firstName: firstname!,
+                        lastName: lastname!,
+                      );
+                    }
+                  },
                 );
               }
             },

@@ -12,7 +12,6 @@ class AuthCubit extends Cubit<AuthState> {
     required String password,
     required String firstName,
     required String lastName,
-    required String username,
   }) async {
     final supabase = Supabase.instance.client;
     try {
@@ -27,7 +26,6 @@ class AuthCubit extends Cubit<AuthState> {
           'id': user.id,
           'first_name': firstName,
           'last_name': lastName,
-          'username': username,
           'email': email,
         });
       }
