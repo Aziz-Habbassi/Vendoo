@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vendoo/app_routes.dart';
 import 'package:vendoo/core/constants/constants.dart';
 import 'package:vendoo/features/auth/controllers/cubits/auth_cubit/auth_cubit.dart';
 import 'package:vendoo/features/auth/presentation/shared_widgets/custom_button.dart';
@@ -107,14 +109,15 @@ class SignUpForm extends StatelessWidget {
                 return CustomButton(
                   text: "Sign Up",
                   ontap: () {
-                    if (formkey.currentState!.validate()) {
-                      BlocProvider.of<AuthCubit>(context).signUpUser(
-                        email: mail!,
-                        password: password!,
-                        firstName: firstname!,
-                        lastName: lastname!,
-                      );
-                    }
+                    context.go(AppRoutes.verifyEmail);
+                    // if (formkey.currentState!.validate()) {
+                    //   BlocProvider.of<AuthCubit>(context).signUpUser(
+                    //     email: mail!,
+                    //     password: password!,
+                    //     firstName: firstname!,
+                    //     lastName: lastname!,
+                    //   );
+                    // }
                   },
                 );
               }

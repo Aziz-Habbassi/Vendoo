@@ -17,7 +17,7 @@ class AnimatedBackground extends StatelessWidget {
           child: Image.asset("assets/images/loginView/Spline.png"),
         ),
         const RiveAnimation.asset(
-          "assets/riveAnimations/shapes.riv",
+          "assets/animations/shapes.riv",
           speedMultiplier: 2,
         ),
 
