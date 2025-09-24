@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'auth_state.dart';
 
@@ -14,25 +13,23 @@ class AuthCubit extends Cubit<AuthState> {
     required String firstName,
     required String lastName,
   }) async {
-    final supabase = Supabase.instance.client;
+    emit(AuthLoading());
     try {
-      emit(AuthLoading());
-      final authResponse = await supabase.auth.signUp(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final user = authResponse.user;
-      if (user != null) {
-        await supabase.from('users').insert({
-          'id': user.id,
-          'first_name': firstName,
-          'last_name': lastName,
-          'email': email,
-        });
-      }
       emit(AuthSuccess());
-    } on AuthException catch (e) {
-      emit(AuthError(errMessage: e.message));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        emit(AuthError(errMessage: 'The password provided is too weak.'));
+      } else if (e.code == 'email-already-in-use') {
+        emit(
+          AuthError(errMessage: 'The account already exists for that email.'),
+        );
+      } else {
+        emit(AuthError(errMessage: e.code));
+      }
     } catch (e) {
       emit(AuthError(errMessage: e.toString()));
     }
@@ -50,12 +47,10 @@ class AuthCubit extends Cubit<AuthState> {
       );
       emit(AuthSuccess());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        emit(AuthError(errMessage: 'The password provided is too weak.'));
-      } else if (e.code == 'email-already-in-use') {
-        emit(
-          AuthError(errMessage: 'The account already exists for that email.'),
-        );
+      if (e.code == 'user-not-found') {
+        emit(AuthError(errMessage: 'No user found for that email.'));
+      } else if (e.code == 'wrong-password') {
+        emit(AuthError(errMessage: 'Wrong password provided for that user.'));
       } else {
         emit(AuthError(errMessage: e.code));
       }
