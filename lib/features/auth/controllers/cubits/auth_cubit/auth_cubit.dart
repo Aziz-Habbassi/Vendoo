@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -43,13 +44,21 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(AuthLoading());
     try {
-      await Supabase.instance.client.auth.signInWithPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       emit(AuthSuccess());
-    } on AuthException catch (e) {
-      emit(AuthError(errMessage: e.message));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        emit(AuthError(errMessage: 'The password provided is too weak.'));
+      } else if (e.code == 'email-already-in-use') {
+        emit(
+          AuthError(errMessage: 'The account already exists for that email.'),
+        );
+      } else {
+        emit(AuthError(errMessage: e.code));
+      }
     } catch (e) {
       emit(AuthError(errMessage: e.toString()));
     }
